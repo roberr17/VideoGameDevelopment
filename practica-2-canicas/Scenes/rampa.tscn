@@ -1,0 +1,22 @@
+[gd_scene load_steps=2 format=3 uid="uid://b2qa3w8y8qhj0"]
+
+[sub_resource type="GDScript" id="GDScript_hct54"]
+script/source = "extends StaticBody2D
+
+	
+"
+
+[node name="Rampa" type="StaticBody2D"]
+position = Vector2(1, -1)
+script = SubResource("GDScript_hct54")
+metadata/_edit_group_ = true
+
+[node name="RampaPoligono" type="Polygon2D" parent="."]
+position = Vector2(406, 86)
+scale = Vector2(1.1696432, 1.109375)
+color = Color(0, 0, 0, 1)
+polygon = PackedVector2Array(-384.00003, -120, -272.00003, -56, -384.00003, -56)
+uv = PackedVector2Array(-384.00003, -120, -272.00003, -56, -384.00003, -56)
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
+polygon = PackedVector2Array(-43.333332, -47.333336, 86.666664, 23.666664, -43.333332, 23.666664)

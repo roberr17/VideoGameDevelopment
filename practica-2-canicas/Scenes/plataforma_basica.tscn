@@ -1,0 +1,14 @@
+[gd_scene format=3 uid="uid://lvinkxvi5wnt"]
+
+[node name="PlataformaBasica" type="StaticBody2D"]
+scale = Vector2(2, 2)
+metadata/_edit_group_ = true
+
+[node name="RectanguloPoligono" type="Polygon2D" parent="."]
+position = Vector2(128, 0)
+color = Color(0.6, 0.8509804, 0.91764706, 1)
+polygon = PackedVector2Array(-192, -16, -64, -16, -64, 16, -192, 16)
+uv = PackedVector2Array(-192, -16, -64, -16, -64, 16, -192, 16)
+
+[node name="RectanguloColision" type="CollisionPolygon2D" parent="."]
+polygon = PackedVector2Array(-64, -16, 64, -16, 64, 16, -64, 16)

@@ -1,0 +1,488 @@
+[gd_scene load_steps=32 format=3 uid="uid://buqqn3lrw665h"]
+
+[ext_resource type="Texture2D" uid="uid://cnlm6q4v7r8q5" path="res://Sprites/Background.png" id="1_chwn1"]
+[ext_resource type="Script" uid="uid://du1exrt7o4edc" path="res://Scripts/canica.gd" id="2_chwn1"]
+[ext_resource type="Texture2D" uid="uid://cyes07ukcwsr2" path="res://Sprites/pngwing.com.png" id="2_v7gqg"]
+[ext_resource type="PackedScene" uid="uid://lvinkxvi5wnt" path="res://Scenes/plataforma_basica.tscn" id="3_chwn1"]
+[ext_resource type="Texture2D" uid="uid://docictsvf67hu" path="res://Sprites/Flechas.png" id="3_op2xg"]
+[ext_resource type="Texture2D" uid="uid://5sourohtipys" path="res://Sprites/meta.jpg" id="4_uu23e"]
+[ext_resource type="Script" uid="uid://c7mvrx2ugmu0l" path="res://Scripts/inicio.gd" id="5_2ooml"]
+[ext_resource type="Script" uid="uid://m1v5w23vpxkw" path="res://Scripts/meta.gd" id="5_ny2ev"]
+[ext_resource type="Script" uid="uid://cur3mexepa355" path="res://Scripts/camera.gd" id="6_p20hg"]
+[ext_resource type="Script" uid="uid://hyee7xtyebrt" path="res://Scripts/plataforma_rotadora.gd" id="8_chwn1"]
+[ext_resource type="Script" uid="uid://kna6s8demfyt" path="res://Scripts/plataforma_desaparece.gd" id="9_2ooml"]
+[ext_resource type="Script" uid="uid://bjs2vt0lylwc2" path="res://Scripts/limite_inferior.gd" id="9_c32x4"]
+[ext_resource type="Texture2D" uid="uid://c6kdq07bfq3rd" path="res://Sprites/Trampolin.png" id="9_hvaui"]
+[ext_resource type="Script" uid="uid://bfffhde0i2h86" path="res://Scripts/trampolin.gd" id="10_p20hg"]
+[ext_resource type="Script" uid="uid://brf3la6jrff58" path="res://Scripts/llave.gd" id="11_03fgm"]
+[ext_resource type="Texture2D" uid="uid://demiyicqkwr4u" path="res://Sprites/teclaH.png" id="12_85gyg"]
+[ext_resource type="Texture2D" uid="uid://c8fh7v6awu8ig" path="res://Sprites/teclaG.png" id="13_c32x4"]
+[ext_resource type="Texture2D" uid="uid://brjrq1fgoqvc4" path="res://Sprites/peligro.png" id="14_fg7i4"]
+[ext_resource type="Texture2D" uid="uid://dantcujv4mawd" path="res://Sprites/so....png" id="16_fg7i4"]
+[ext_resource type="Script" uid="uid://kv3oxibcsmqw" path="res://Scripts/canon.gd" id="17_gwne5"]
+[ext_resource type="PackedScene" uid="uid://cdyhdvshvrhf0" path="res://Scenes/escaleras.tscn" id="17_hpu6p"]
+[ext_resource type="Script" uid="uid://pgta7t5flqmn" path="res://Scripts/ascensor.gd" id="19_1nvmp"]
+[ext_resource type="Texture2D" uid="uid://batd38gd58msl" path="res://Sprites/Llave.png" id="20_1nvmp"]
+[ext_resource type="Script" uid="uid://umxq7hhjty88" path="res://Scripts/puerta.gd" id="21_el1jj"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_c32x4"]
+size = Vector2(10475.004, 250.00012)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_jiy1d"]
+size = Vector2(550.0001, 237.50963)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_fg7i4"]
+size = Vector2(40, 16)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_el1jj"]
+size = Vector2(1227.936, 91.00006)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_0e48y"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_2ooml"]
+size = Vector2(251, 20)
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_03fgm"]
+radius = 144.30078
+height = 578.12695
+
+[node name="Node2D" type="Node2D"]
+
+[node name="Camera2D" type="Camera2D" parent="." node_paths=PackedStringArray("objetivo")]
+position = Vector2(45, 10)
+zoom = Vector2(0.7, 0.7)
+script = ExtResource("6_p20hg")
+objetivo = NodePath("../Canica")
+
+[node name="Fondo" type="Sprite2D" parent="."]
+position = Vector2(93.99999, 613)
+scale = Vector2(5, 5)
+texture = ExtResource("1_chwn1")
+
+[node name="LimiteInferior" type="Area2D" parent="Fondo"]
+position = Vector2(0.39999485, 454)
+scale = Vector2(0.19999999, 0.19999999)
+script = ExtResource("9_c32x4")
+metadata/_edit_group_ = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Fondo/LimiteInferior"]
+position = Vector2(-7.6293945e-06, -1)
+scale = Vector2(0.99999946, 0.99999946)
+shape = SubResource("RectangleShape2D_c32x4")
+
+[node name="Anclaje" type="StaticBody2D" parent="Fondo"]
+visible = false
+self_modulate = Color(0.6, 0.8509804, 0.91764706, 1)
+light_mask = 2
+visibility_layer = 2
+position = Vector2(-114.60001, -5.199999)
+rotation = -0.25307277
+scale = Vector2(0.1, 0.1)
+metadata/_edit_group_ = true
+
+[node name="Polygon2D" type="Polygon2D" parent="Fondo/Anclaje"]
+modulate = Color(0.6, 0.8509804, 0.91764706, 1)
+self_modulate = Color(0.6, 0.8509804, 0.91764706, 1)
+polygon = PackedVector2Array(-8.000007, -7.999998, 7.9999933, -7.999998, 7.9999933, 8.000002, -8.000007, 8.000002)
+uv = PackedVector2Array(-24, -16, -8, -16, -8, 0, -24, 0)
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Fondo/Anclaje"]
+position = Vector2(4.2515087, -24.470844)
+scale = Vector2(0.16160119, 1)
+polygon = PackedVector2Array(-80.65686, 16.325134, -80.790405, 32.817017, 22.534302, 32.683228, 22.667847, 16.191345)
+
+[node name="Sprite2D" type="Sprite2D" parent="Fondo"]
+position = Vector2(521.6, 146)
+rotation = -1.5707964
+scale = Vector2(0.06722183, 0.05023428)
+texture = ExtResource("3_op2xg")
+
+[node name="Meta" type="Sprite2D" parent="."]
+position = Vector2(1799.9999, 1461)
+rotation = 0.34061864
+scale = Vector2(0.4745454, 0.47468385)
+texture = ExtResource("4_uu23e")
+metadata/_edit_group_ = true
+
+[node name="Area2D" type="Area2D" parent="Meta"]
+script = ExtResource("5_ny2ev")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Meta/Area2D"]
+position = Vector2(-0.00024414063, 0.25463867)
+scale = Vector2(1, 0.9999999)
+shape = SubResource("RectangleShape2D_jiy1d")
+
+[node name="Canon" type="Sprite2D" parent="."]
+position = Vector2(-1322, 1904)
+rotation = -0.2617994
+scale = Vector2(2.7993908, 4.025156)
+metadata/_edit_group_ = true
+
+[node name="Area2D" type="Area2D" parent="Canon"]
+position = Vector2(8.287804, -2.3135762)
+script = ExtResource("17_gwne5")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Canon/Area2D"]
+position = Vector2(-4, 0)
+shape = SubResource("RectangleShape2D_fg7i4")
+
+[node name="Polygon2D" type="Polygon2D" parent="Canon/Area2D"]
+modulate = Color(0.6, 0.8509804, 0.91764706, 1)
+polygon = PackedVector2Array(7.9999695, -8.000008, -24.00003, -8.000008, -8.0000305, -7.6293945e-06, -24.00003, 7.9999924, 15.9999695, 7.9999924, 15.9999695, -8.000008)
+uv = PackedVector2Array(-224.00003, -88, -256.00003, -88, -240.00003, -80, -256.00003, -72, -216.00003, -72, -216.00003, -88)
+
+[node name="Ascensor" type="Area2D" parent="."]
+position = Vector2(2715, 1225)
+rotation = 1.5707964
+script = ExtResource("19_1nvmp")
+metadata/_edit_group_ = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Ascensor"]
+position = Vector2(42.968018, 35.5)
+shape = SubResource("RectangleShape2D_el1jj")
+
+[node name="Spawnpoint" type="Marker2D" parent="."]
+position = Vector2(-2392, -1183)
+
+[node name="Canica" type="RigidBody2D" parent="."]
+position = Vector2(-2392, -1183)
+can_sleep = false
+script = ExtResource("2_chwn1")
+metadata/_edit_group_ = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Canica"]
+scale = Vector2(2, 2)
+shape = SubResource("CircleShape2D_0e48y")
+debug_color = Color(0, 0, 0, 1)
+
+[node name="Sprite2D" type="Sprite2D" parent="Canica/CollisionShape2D"]
+position = Vector2(4.7683716e-07, -9.536743e-07)
+scale = Vector2(0.059765626, 0.059765626)
+texture = ExtResource("2_v7gqg")
+
+[node name="RayCastSuelo" type="RayCast2D" parent="Canica"]
+target_position = Vector2(0, 31)
+
+[node name="Inicio" type="RigidBody2D" parent="."]
+position = Vector2(-2392, -1069)
+disable_mode = 1
+gravity_scale = 0.0
+freeze = true
+freeze_mode = 1
+script = ExtResource("5_2ooml")
+metadata/_edit_group_ = true
+
+[node name="InicioPoligono" type="Polygon2D" parent="Inicio"]
+position = Vector2(448, 166)
+scale = Vector2(2, 2)
+color = Color(0.6, 0.8509804, 0.91764706, 1)
+polygon = PackedVector2Array(-248.00002, -112.00001, -240, -112.00001, -240, -72.00001, -208, -72.00001, -208, -112.00001, -200.00003, -112.00001, -200.00003, -64.00001, -248.00002, -64.00001)
+uv = PackedVector2Array(-248.00002, -112.00001, -240, -112.00001, -240, -72.00001, -208, -72.00001, -208, -112.00001, -200.00003, -112.00001, -200.00003, -64.00001, -248.00002, -64.00001)
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Inicio"]
+position = Vector2(-0.000118494034, 0.99996185)
+scale = Vector2(2, 2)
+polygon = PackedVector2Array(-24, -29.462626, -24, 18.537374, 24, 18.537374, 24, -29.462626, 16, -29.462626, 15.999996, 10.537372, -16, 10.537374, -16, -29.462626)
+
+[node name="Puerta" parent="." instance=ExtResource("17_hpu6p")]
+position = Vector2(1893, 1215)
+rotation = 0.3369968
+freeze = true
+script = ExtResource("21_el1jj")
+
+[node name="PlataformaMovible" type="RigidBody2D" parent="."]
+position = Vector2(-616, 378.99997)
+rotation = -0.25307274
+scale = Vector2(0.8, 0.8)
+gravity_scale = 0.0
+sleeping = true
+can_sleep = false
+freeze_mode = 1
+metadata/_edit_group_ = true
+
+[node name="Polygon2D" type="Polygon2D" parent="PlataformaMovible"]
+position = Vector2(4.6237555, -1.9029186)
+color = Color(0.6, 0.8509804, 0.91764706, 1)
+polygon = PackedVector2Array(-136.00002, -16, 7.9999847, -16, 7.9999847, 16, -208.00002, 16, -208.00008, -56.000008, -184.00008, -56.000008, -184.00008, -16.000004)
+uv = PackedVector2Array(-560, -24, -416, -24, -416, 8, -632, 8, -632.00006, -64.00001, -608.00006, -64.00001, -608.00006, -24.000004)
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="PlataformaMovible"]
+position = Vector2(-140.8613, -14.480056)
+polygon = PackedVector2Array(-62.369747, -42.537815, -38.369747, -42.537815, -38.369747, -2.5378146, 153.63025, -2.5378146, 153.63025, 29.462185, -62.369747, 29.462185)
+
+[node name="Trampolin" type="Sprite2D" parent="."]
+position = Vector2(-1602, 711.99994)
+scale = Vector2(0.54583323, 0.5626374)
+texture = ExtResource("9_hvaui")
+
+[node name="Trampolin" type="Area2D" parent="Trampolin"]
+position = Vector2(-10, -72.5)
+scale = Vector2(2.4999998, 2.4999998)
+script = ExtResource("10_p20hg")
+strength = 1700.0
+metadata/_edit_group_ = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Trampolin/Trampolin"]
+shape = SubResource("RectangleShape2D_2ooml")
+
+[node name="LLave" type="Sprite2D" parent="."]
+position = Vector2(2040, 956.00006)
+scale = Vector2(0.14875624, 0.15245901)
+texture = ExtResource("20_1nvmp")
+script = ExtResource("11_03fgm")
+
+[node name="HitboxLlave" type="Area2D" parent="LLave"]
+collision_layer = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="LLave/HitboxLlave"]
+position = Vector2(-6.7224073, -6.5595403)
+rotation = 1.5712879
+shape = SubResource("CapsuleShape2D_03fgm")
+
+[node name="H" type="Sprite2D" parent="."]
+position = Vector2(-2091.0002, 342)
+scale = Vector2(0.38026312, 0.4110739)
+texture = ExtResource("12_85gyg")
+
+[node name="G" type="Sprite2D" parent="."]
+position = Vector2(-2537.125, -1109.25)
+scale = Vector2(0.33092073, 0.33389276)
+texture = ExtResource("13_c32x4")
+
+[node name="Danger" type="Sprite2D" parent="."]
+position = Vector2(-1977, -545.00006)
+scale = Vector2(0.23249666, 0.24676794)
+texture = ExtResource("14_fg7i4")
+
+[node name="NoCheating" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(-3194, -261)
+rotation = -0.16625705
+scale = Vector2(0.15360047, 0.12893082)
+texture = ExtResource("16_fg7i4")
+
+[node name="Escaleras" parent="." instance=ExtResource("17_hpu6p")]
+position = Vector2(-619.0001, 777.99994)
+
+[node name="Escaleras2" parent="." instance=ExtResource("17_hpu6p")]
+position = Vector2(-667.0001, 953.99994)
+
+[node name="Escaleras3" parent="." instance=ExtResource("17_hpu6p")]
+position = Vector2(-617.0001, 1162)
+
+[node name="PlataformaRotadora" type="StaticBody2D" parent="."]
+position = Vector2(-1830, -53)
+scale = Vector2(1.8, 1.8)
+script = ExtResource("8_chwn1")
+metadata/_edit_group_ = true
+
+[node name="Polygon2D" type="Polygon2D" parent="PlataformaRotadora"]
+color = Color(0.6, 0.8509804, 0.91764706, 1)
+polygon = PackedVector2Array(-8.0000305, -103.99999, 8, -103.99999, 8, -16, 8, -7.999992, 104, -7.999992, 104, 8.000008, 8, 8.000008, 8, 104.00002, -8.0000305, 104.00002, -8.0000305, 8.000008, -104.00003, 8.000008, -104.00003, -7.999992, -8.0000305, -7.999992)
+uv = PackedVector2Array(-192.00003, -96, -176, -96, -176, -8.000008, -176, 0, -80, 0, -80, 16, -176, 16, -176, 112.000015, -192.00003, 112.000015, -192.00003, 16, -288.00003, 16, -288.00003, 0, -192.00003, 0)
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="PlataformaRotadora"]
+modulate = Color(0.6, 0.8509804, 0.91764706, 1)
+self_modulate = Color(0.6, 0.8509804, 0.91764706, 1)
+rotation = -0.0019607241
+polygon = PackedVector2Array(-7.984299, -8.015671, -103.984116, -8.2039, -104.01549, 7.7960696, -8.015671, 7.984299, -8.2039, 103.984116, 7.7960696, 104.01549, 7.984299, 8.015671, 103.984116, 8.2039, 104.01549, -7.7960696, 8.015671, -7.984299, 8.2039, -103.984116, -7.7960696, -104.01549)
+
+[node name="Desaparece" parent="." instance=ExtResource("3_chwn1")]
+position = Vector2(-1958, 245.00006)
+rotation = -0.7853982
+scale = Vector2(0.5214184, 0.5852759)
+script = ExtResource("9_2ooml")
+
+[node name="P1" parent="." instance=ExtResource("3_chwn1")]
+position = Vector2(-2226, -796)
+rotation = 0.4279088
+scale = Vector2(2.9430323, 2)
+
+[node name="P2" parent="." instance=ExtResource("3_chwn1")]
+position = Vector2(-1652.0001, -510)
+rotation = 0.10105782
+scale = Vector2(2.5200024, 1.9599987)
+
+[node name="P3" parent="." instance=ExtResource("3_chwn1")]
+position = Vector2(-1375, -284.00003)
+rotation = -0.394176
+scale = Vector2(3.132134, 1.9999999)
+
+[node name="P4" parent="." instance=ExtResource("3_chwn1")]
+position = Vector2(-1044, 311)
+rotation = 0.11833465
+scale = Vector2(2.8427248, -0.89154565)
+
+[node name="P5" parent="." instance=ExtResource("3_chwn1")]
+position = Vector2(-1946, 317.99994)
+rotation = 0.7853982
+scale = Vector2(3.9607882, 0.6667434)
+
+[node name="P6" parent="." instance=ExtResource("3_chwn1")]
+visible = false
+position = Vector2(-2821, -224)
+rotation = -0.1765593
+scale = Vector2(16.98549, -0.73094106)
+
+[node name="P7" parent="." instance=ExtResource("3_chwn1")]
+position = Vector2(-764, 1029)
+rotation = 1.5707964
+scale = Vector2(5.1061573, 0.8279807)
+
+[node name="P8" parent="." instance=ExtResource("3_chwn1")]
+position = Vector2(-522, 1031)
+rotation = -1.5707964
+scale = Vector2(5.1059976, 0.828)
+
+[node name="P9" parent="." instance=ExtResource("3_chwn1")]
+position = Vector2(-1153.9999, 1901.9999)
+rotation = -0.26097924
+scale = Vector2(3.2338543, 1.1663574)
+
+[node name="P10" parent="." instance=ExtResource("3_chwn1")]
+position = Vector2(-872, 653)
+rotation = 0.43633232
+scale = Vector2(2.0399952, 0.39999998)
+
+[node name="P11" parent="." instance=ExtResource("3_chwn1")]
+position = Vector2(-414.00012, 654.99994)
+rotation = -0.43633232
+scale = Vector2(2.04, 0.4)
+
+[node name="P12" parent="." instance=ExtResource("3_chwn1")]
+position = Vector2(2547.9998, 1883.0002)
+rotation = 0.0659134
+scale = Vector2(3.3207366, 0.7999999)
+
+[node name="P13" parent="." instance=ExtResource("3_chwn1")]
+position = Vector2(2023, 1866.0001)
+scale = Vector2(3.148635, -0.81925595)
+
+[node name="P14" parent="." instance=ExtResource("3_chwn1")]
+position = Vector2(2744, 1305.0001)
+rotation = 1.5707964
+scale = Vector2(9.107097, -0.8982966)
+
+[node name="P15" parent="." instance=ExtResource("3_chwn1")]
+position = Vector2(2627, 1312)
+rotation = 1.5707964
+scale = Vector2(7.195245, -0.898)
+
+[node name="P16" parent="." instance=ExtResource("3_chwn1")]
+position = Vector2(2423, 914.9999)
+rotation = -0.3192043
+scale = Vector2(3.4952052, 0.84000003)
+
+[node name="P17" parent="." instance=ExtResource("3_chwn1")]
+position = Vector2(1783, 1522)
+rotation = 0.33726552
+scale = Vector2(2.2325828, -0.85714287)
+
+[node name="P18" parent="." instance=ExtResource("3_chwn1")]
+position = Vector2(1703.9999, 1348)
+rotation = -1.2321388
+scale = Vector2(2.370945, 0.7200049)
+
+[node name="P19" parent="." instance=ExtResource("3_chwn1")]
+position = Vector2(1952.9999, 1433)
+rotation = -1.2286452
+scale = Vector2(2.4138765, 0.84892917)
+
+[node name="P20" parent="." instance=ExtResource("3_chwn1")]
+position = Vector2(2653, 708.0001)
+rotation = 0.26590642
+scale = Vector2(1.6326722, -0.8297462)
+
+[node name="P21" parent="." instance=ExtResource("3_chwn1")]
+position = Vector2(-669, 1774)
+rotation = -0.2617994
+scale = Vector2(3.4837167, 1.0737387)
+
+[node name="P22" parent="." instance=ExtResource("3_chwn1")]
+visible = false
+position = Vector2(-585, 879)
+rotation = 3.1415927
+scale = Vector2(0.19999519, -0.48)
+
+[node name="P23" parent="." instance=ExtResource("3_chwn1")]
+visible = false
+position = Vector2(-701, 1087)
+scale = Vector2(0.13221644, 0.7863524)
+
+[node name="P24" parent="." instance=ExtResource("3_chwn1")]
+visible = false
+position = Vector2(-851, 45)
+rotation = -0.24460666
+scale = Vector2(0.23999509, 1.2)
+
+[node name="Anclaje2" parent="." instance=ExtResource("3_chwn1")]
+visible = false
+position = Vector2(-704, 704)
+rotation = 3.1415927
+scale = Vector2(0.040003248, -0.13753061)
+
+[node name="PinJoint2D" type="PinJoint2D" parent="."]
+position = Vector2(-589, 370)
+rotation = -0.25307274
+node_a = NodePath("../PlataformaMovible")
+node_b = NodePath("../Fondo/Anclaje")
+disable_collision = false
+
+[node name="PinJoint2D2" type="PinJoint2D" parent="."]
+position = Vector2(-530, 777)
+node_a = NodePath("../P8")
+node_b = NodePath("../Escaleras")
+
+[node name="PinJoint2D3" type="PinJoint2D" parent="."]
+position = Vector2(-757, 955)
+node_a = NodePath("../P7")
+node_b = NodePath("../Escaleras2")
+
+[node name="PinJoint2D4" type="PinJoint2D" parent="."]
+position = Vector2(-529, 1161)
+node_a = NodePath("../P8")
+node_b = NodePath("../Escaleras3")
+
+[node name="Muelle1" type="DampedSpringJoint2D" parent="."]
+position = Vector2(-704, 704)
+node_a = NodePath("../Anclaje2")
+node_b = NodePath("../Escaleras")
+length = 75.0
+stiffness = 4.0
+damping = 0.5
+
+[node name="DampedSpringJoint2D" type="DampedSpringJoint2D" parent="."]
+position = Vector2(-585, 879)
+node_a = NodePath("../P22")
+node_b = NodePath("../Escaleras2")
+length = 75.0
+stiffness = 4.0
+damping = 0.5
+
+[node name="DampedSpringJoint2D2" type="DampedSpringJoint2D" parent="."]
+position = Vector2(-700.99994, 1087)
+node_a = NodePath("../P23")
+node_b = NodePath("../Escaleras3")
+length = 75.0
+stiffness = 4.0
+damping = 0.5
+
+[node name="DampedSpringJoint2D3" type="DampedSpringJoint2D" parent="."]
+position = Vector2(-851, 44)
+rotation = -0.21691921
+node_a = NodePath("../P24")
+node_b = NodePath("../PlataformaMovible")
+length = 344.0
+stiffness = 1.5
+damping = 0.5
+
+[connection signal="body_entered" from="Fondo/LimiteInferior" to="Fondo/LimiteInferior" method="_on_body_entered"]
+[connection signal="body_entered" from="Fondo/LimiteInferior" to="Inicio" method="_on_limite_inferior_body_entered"]
+[connection signal="body_entered" from="Fondo/LimiteInferior" to="Desaparece" method="_on_limite_inferior_body_entered"]
+[connection signal="body_entered" from="Meta/Area2D" to="Meta/Area2D" method="_on_body_entered"]
+[connection signal="body_entered" from="Canon/Area2D" to="Canon/Area2D" method="_on_body_entered"]
+[connection signal="body_entered" from="Ascensor" to="Ascensor" method="_on_body_entered"]
+[connection signal="body_exited" from="Ascensor" to="Ascensor" method="_on_body_exited"]
+[connection signal="body_entered" from="Trampolin/Trampolin" to="Trampolin/Trampolin" method="_on_body_entered"]
+[connection signal="body_entered" from="LLave/HitboxLlave" to="LLave" method="_on_hitbox_llave_body_entered"]
+[connection signal="body_entered" from="LLave/HitboxLlave" to="Puerta" method="_on_hitbox_llave_body_entered"]
