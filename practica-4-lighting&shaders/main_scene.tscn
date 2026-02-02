@@ -1,0 +1,126 @@
+[gd_scene load_steps=18 format=3 uid="uid://brsnr6pwg2y8n"]
+
+[ext_resource type="Script" uid="uid://ctqmto5d1xsgq" path="res://main.gd" id="1_66tet"]
+[ext_resource type="Texture2D" uid="uid://dpmd6jth1vy6c" path="res://Captura de pantalla 2025-10-24 233328.png" id="2_hq1ik"]
+[ext_resource type="Texture2D" uid="uid://b85s3rfcjdydc" path="res://Resources/Furniture/Bedroom/Lamp_stand_1.png" id="5_qwutr"]
+[ext_resource type="Shader" uid="uid://dfv82u6sdtuea" path="res://blinking_shader.tres" id="6_7ycvg"]
+[ext_resource type="Texture2D" uid="uid://cdfp04iyitcyl" path="res://Resources/Furniture/Sign_exit_left.png" id="6_671wp"]
+[ext_resource type="Texture2D" uid="uid://cmmyceeverdr2" path="res://Resources/Furniture/Bedroom/Laptop.png" id="7_mo76n"]
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_hq1ik"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_wr18j"]
+shader = ExtResource("6_7ycvg")
+shader_parameter/luz = 1.0
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_7ycvg"]
+shader = ExtResource("6_7ycvg")
+shader_parameter/luz = 1.0
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_qwutr"]
+shader = ExtResource("6_7ycvg")
+shader_parameter/luz = 1.0
+
+[sub_resource type="Gradient" id="Gradient_hq1ik"]
+colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_nfk4m"]
+gradient = SubResource("Gradient_hq1ik")
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+fill_to = Vector2(0.86, 0.13)
+
+[sub_resource type="Gradient" id="Gradient_66tet"]
+colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_7ycvg"]
+gradient = SubResource("Gradient_66tet")
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+fill_to = Vector2(0.89252335, 0.1682243)
+
+[sub_resource type="Gradient" id="Gradient_wr18j"]
+colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_qwutr"]
+gradient = SubResource("Gradient_wr18j")
+fill = 1
+fill_from = Vector2(0.49532712, 0.5)
+fill_to = Vector2(0.87383175, 0.12149533)
+
+[sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_hq1ik"]
+polygon = PackedVector2Array(14, -27, 14, -68, 52, -68, 52, -27, 59, 145, 241, 157, 221, -126, -218, -141, -221, 145, -73, 141)
+
+[node name="MainScene" type="Node2D"]
+script = ExtResource("1_66tet")
+
+[node name="CanvasModulate" type="CanvasModulate" parent="."]
+color = Color(0.39688927, 0.39688927, 0.39688924, 1)
+
+[node name="Fondo" type="Sprite2D" parent="."]
+material = SubResource("CanvasItemMaterial_hq1ik")
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("2_hq1ik")
+
+[node name="Lampara" type="Sprite2D" parent="." groups=["sprites_con_luz"]]
+material = SubResource("ShaderMaterial_wr18j")
+position = Vector2(171, 24)
+scale = Vector2(3, 3)
+texture = ExtResource("5_qwutr")
+
+[node name="ExitSign" type="Sprite2D" parent="." groups=["sprites_con_luz"]]
+material = SubResource("ShaderMaterial_7ycvg")
+position = Vector2(-96, -90)
+scale = Vector2(2, 2)
+texture = ExtResource("6_671wp")
+
+[node name="Portatil" type="Sprite2D" parent="." groups=["sprites_con_luz"]]
+material = SubResource("ShaderMaterial_qwutr")
+position = Vector2(-159, 75)
+scale = Vector2(3, 3)
+texture = ExtResource("7_mo76n")
+
+[node name="LuzLampara" type="PointLight2D" parent="." groups=["luces"]]
+z_index = 10
+position = Vector2(171, 5)
+scale = Vector2(226.56248, 227.34375)
+color = Color(0.8392157, 0.627451, 0, 1)
+energy = 2.0
+range_layer_max = 10
+shadow_enabled = true
+shadow_color = Color(0, 0, 0, 0.80784315)
+texture = SubResource("GradientTexture2D_nfk4m")
+texture_scale = 0.01
+
+[node name="LuzExit" type="PointLight2D" parent="." groups=["luces"]]
+top_level = true
+z_index = 10
+position = Vector2(-96, -88.99999)
+scale = Vector2(1.7343751, 1.7265624)
+color = Color(0.34509805, 1, 0.75686276, 1)
+range_layer_max = 10
+shadow_color = Color(0.13725491, 0.13725491, 0.13725491, 0.89411765)
+texture = SubResource("GradientTexture2D_7ycvg")
+
+[node name="LuzPortatil" type="PointLight2D" parent="." groups=["luces"]]
+z_index = 10
+position = Vector2(-159.00002, 76.00001)
+scale = Vector2(1.703125, 1.71875)
+color = Color(0, 0.65882355, 1, 1)
+range_layer_max = 10
+shadow_color = Color(0, 0, 0, 0.7058824)
+texture = SubResource("GradientTexture2D_qwutr")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+zoom = Vector2(3, 2.8)
+
+[node name="DirectionalLight2D" type="DirectionalLight2D" parent="."]
+position = Vector2(85, -154)
+rotation = -3.1237407
+scale = Vector2(-2.9119465, 2.2767332)
+color = Color(0, 0.40705696, 0.8980053, 1)
+energy = 0.75
+shadow_enabled = true
+
+[node name="LightOccluder2D" type="LightOccluder2D" parent="."]
+occluder = SubResource("OccluderPolygon2D_hq1ik")
