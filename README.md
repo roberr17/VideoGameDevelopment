@@ -46,7 +46,7 @@ Desarrollo de una IA capaz de jugar juegos de estrategia por turnos.
 
 ## 🛠️ Stack Tecnológico General
 
-* **Lenguajes:** C++ / C# (Unity).
+* **Lenguajes:** Godot.
 * **Gráficos:** OpenGL / HLSL / GLSL.
 * **Conceptos Clave:**
     * Finite State Machines (FSM).
