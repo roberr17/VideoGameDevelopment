@@ -1,0 +1,26 @@
+[gd_scene load_steps=6 format=3 uid="uid://bsqb4kdidwn3b"]
+
+[ext_resource type="Script" uid="uid://brje4behgqv5h" path="res://Scripts/water.gd" id="1_slmpt"]
+[ext_resource type="Texture2D" uid="uid://b5rwvrq2uuee8" path="res://Sprites/Water.png" id="2_gf5bf"]
+[ext_resource type="Shader" uid="uid://bmnaw8xohktlq" path="res://Scenes/water.gdshader" id="2_qq3op"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_qq3op"]
+size = Vector2(560, 320)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_bjixy"]
+shader = ExtResource("2_qq3op")
+shader_parameter/wave_amplitude = 14.03200066652
+shader_parameter/wave_frequency = 1.398000066405
+shader_parameter/wave_speed = 1.86000008835
+
+[node name="Water" type="Area2D"]
+script = ExtResource("1_slmpt")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_qq3op")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+material = SubResource("ShaderMaterial_bjixy")
+texture = ExtResource("2_gf5bf")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
