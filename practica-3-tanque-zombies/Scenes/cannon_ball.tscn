@@ -1,0 +1,36 @@
+[gd_scene load_steps=6 format=3 uid="uid://ddvo2qvel8lp6"]
+
+[ext_resource type="Script" uid="uid://dv2xj46sgxsoc" path="res://Scripts/cannon_ball.gd" id="1_qobvt"]
+[ext_resource type="PackedScene" uid="uid://bucjtr2tsytqp" path="res://Scenes/explosion.tscn" id="2_0vp37"]
+[ext_resource type="Texture2D" uid="uid://xujp84mu88in" path="res://Sprites/BalaDeCanon.png" id="2_j3o8p"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_0vp37"]
+radius = 13.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_qobvt"]
+radius = 52.009613
+
+[node name="Cannon_Ball" type="RigidBody2D"]
+collision_layer = 4
+collision_mask = 9
+can_sleep = false
+contact_monitor = true
+max_contacts_reported = 2
+script = ExtResource("1_qobvt")
+particulas_explosion = ExtResource("2_0vp37")
+
+[node name="CannonBall_Sprite2D" type="Sprite2D" parent="."]
+texture_filter = 1
+texture = ExtResource("2_j3o8p")
+
+[node name="CannonBall_CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_0vp37")
+
+[node name="Destruccion_Area2D" type="Area2D" parent="."]
+collision_layer = 4
+collision_mask = 9
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Destruccion_Area2D"]
+shape = SubResource("CircleShape2D_qobvt")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

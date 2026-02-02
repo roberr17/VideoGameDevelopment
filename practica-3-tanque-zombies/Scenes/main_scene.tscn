@@ -1,0 +1,126 @@
+[gd_scene load_steps=15 format=3 uid="uid://cs8s3e5f0b5sx"]
+
+[ext_resource type="Texture2D" uid="uid://cn0sc3o7twvva" path="res://Sprites/Fondo.jpg" id="1_6l7je"]
+[ext_resource type="Script" uid="uid://dti7xykq6llak" path="res://Scripts/ground.gd" id="2_jv6wh"]
+[ext_resource type="Script" uid="uid://cxqdpylcsbuh4" path="res://Scripts/tank.gd" id="3_maf8m"]
+[ext_resource type="Texture2D" uid="uid://cghcwhi5l0rhf" path="res://Sprites/Tank1.png" id="4_huasi"]
+[ext_resource type="PackedScene" uid="uid://ddvo2qvel8lp6" path="res://Scenes/cannon_ball.tscn" id="4_m1efj"]
+[ext_resource type="Texture2D" uid="uid://diydiwfd1ff25" path="res://Sprites/Tank2-sheet.png" id="5_m1efj"]
+[ext_resource type="Script" uid="uid://c7kljfb0e6n0w" path="res://Scripts/spawner.gd" id="6_huasi"]
+[ext_resource type="AudioStream" uid="uid://bknl0vekdled" path="res://Sounds/Gunshot Sound Effect Single Shot - Birthday Song.mp3" id="7_m1efj"]
+[ext_resource type="PackedScene" uid="uid://c1hq6gpid4yj0" path="res://Scenes/zombie.tscn" id="7_maf8m"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_maf8m"]
+radius = 27.070274
+height = 64.019875
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ioaeq"]
+atlas = ExtResource("5_m1efj")
+region = Rect2(0, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7ewk0"]
+atlas = ExtResource("5_m1efj")
+region = Rect2(0, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_lhp3t"]
+atlas = ExtResource("5_m1efj")
+region = Rect2(64, 0, 64, 64)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_gnsmo"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ioaeq")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7ewk0")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_lhp3t")
+}],
+"loop": true,
+"name": &"moving",
+"speed": 5.0
+}]
+
+[node name="Node2D" type="Node2D"]
+
+[node name="Background" type="Sprite2D" parent="."]
+position = Vector2(11, 367.00006)
+scale = Vector2(1.1457342, 1.1118525)
+texture = ExtResource("1_6l7je")
+
+[node name="Ground" type="StaticBody2D" parent="." groups=["Ground"]]
+position = Vector2(12, 1159)
+scale = Vector2(1.1200012, 1)
+collision_mask = 14
+script = ExtResource("2_jv6wh")
+metadata/_edit_group_ = true
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Ground"]
+
+[node name="Polygon2D" type="Polygon2D" parent="Ground"]
+color = Color(0.65882355, 0.59607846, 1, 1)
+polygon = PackedVector2Array(-5163.7456, -965.1323, -4956.901, -1063.6298, -4838.704, -1231.0753, -4612.16, -1368.9717, -4218.171, -1418.2203, -3952.2275, -1418.2203, -3676.435, -1359.122, -3351.3936, -1171.9768, -3115, -906.03394, -2839.207, -600.692, -2524.0156, -295.3501, -2120.1763, -147.604, -1667.0883, -187.00293, -1292.7982, -403.69727, -751.0624, -817.3862, -494.96912, -906.03394, 76.31555, -896.1842, 490.005, -856.7852, 1209.0353, -551.44336, 1524.2277, -423.39673, 2056.1133, -295.3501, 2932.7402, -364.29822, 3257.7813, -531.7438, 3553.2734, -777.9873, 3927.5635, -1093.179, 4311.703, -1280.324, 4981.4854, -1191.6763, 5424.7236, -1014.38104, 5611.869, -817.3862, 5799.0137, -561.2931, 5877.8115, -285.50037, 5877.314, 835.39355, -5123.171, 859.22986)
+uv = PackedVector2Array(-3745.4814, -595.6686, -3538.637, -694.166, -3420.4402, -861.6116, -3193.8962, -999.50793, -2799.9067, -1048.7566, -2533.9634, -1048.7566, -2258.171, -989.6582, -1933.1294, -802.5131, -1696.7358, -536.5702, -1420.9429, -231.22827, -1105.7515, 74.11365, -701.9121, 221.85974, -248.82422, 182.46082, 125.46582, -34.23352, 667.20166, -447.9225, 923.2949, -536.5702, 1494.5796, -526.72046, 1908.269, -487.32147, 2627.2993, -181.97961, 2942.4917, -53.932983, 3474.3774, 74.11365, 4351.0044, 5.1655273, 4676.0454, -162.28003, 4971.5376, -408.52356, 5345.8276, -723.7152, 5729.9673, -910.8602, 6399.7495, -822.2126, 6842.988, -644.9173, 7030.1333, -447.9225, 7217.278, -191.82935, 7296.0757, 83.96338, 7295.578, 1204.8573, -3704.9067, 1228.6936)
+
+[node name="Tank_CharacterBody2D" type="CharacterBody2D" parent="." groups=["Tank"]]
+scale = Vector2(2.1795125, 2.2805421)
+collision_layer = 2
+collision_mask = 9
+floor_constant_speed = true
+floor_block_on_wall = false
+floor_max_angle = 3.1415927
+safe_margin = 5.0
+script = ExtResource("3_maf8m")
+cannon_ball = ExtResource("4_m1efj")
+metadata/_edit_group_ = true
+
+[node name="Cannon_Sprite2D" type="Sprite2D" parent="Tank_CharacterBody2D"]
+texture_filter = 1
+texture = ExtResource("4_huasi")
+
+[node name="Sight" type="Marker2D" parent="Tank_CharacterBody2D/Cannon_Sprite2D"]
+position = Vector2(-30.282003, 0)
+scale = Vector2(1.0000001, 1)
+
+[node name="Body_CollisionShape2D" type="CollisionShape2D" parent="Tank_CharacterBody2D"]
+scale = Vector2(1.0000001, 1)
+shape = SubResource("CapsuleShape2D_maf8m")
+metadata/_edit_group_ = true
+
+[node name="Body_AnimatedSprite2D" type="AnimatedSprite2D" parent="Tank_CharacterBody2D/Body_CollisionShape2D"]
+texture_filter = 1
+scale = Vector2(1.0000002, 1)
+sprite_frames = SubResource("SpriteFrames_gnsmo")
+animation = &"idle"
+
+[node name="Camera2D" type="Camera2D" parent="Tank_CharacterBody2D"]
+zoom = Vector2(0.65, 0.65)
+
+[node name="ShootSound" type="AudioStreamPlayer2D" parent="Tank_CharacterBody2D"]
+stream = ExtResource("7_m1efj")
+
+[node name="Spawner_Node2D" type="Node2D" parent="."]
+script = ExtResource("6_huasi")
+scene = ExtResource("7_maf8m")
+
+[node name="Marker2D" type="Marker2D" parent="Spawner_Node2D"]
+position = Vector2(-3760, -560)
+
+[node name="Marker2D2" type="Marker2D" parent="Spawner_Node2D"]
+position = Vector2(-2795, 142)
+
+[node name="Marker2D3" type="Marker2D" parent="Spawner_Node2D"]
+position = Vector2(1601, 325)
+
+[node name="Marker2D4" type="Marker2D" parent="Spawner_Node2D"]
+position = Vector2(2640, 320)
+
+[node name="Marker2D5" type="Marker2D" parent="Spawner_Node2D"]
+position = Vector2(3766, -100)
